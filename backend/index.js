@@ -20,7 +20,7 @@ const client = new OpenAI({
 });
 
 app.listen(process.env.PORT,function(){
-    console.log("Listening on port 8000!")
+    console.log(`Listening on port ${process.env.PORT}`)
 })
 
 app.get("/",function(req,res){
