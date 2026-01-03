@@ -5,11 +5,15 @@ import { FoodInput } from "@/components/food-input"
 import { ResultCard } from "@/components/result-card"
 import { LoadingState } from "@/components/loading-state"
 
+
+
 export interface AnalysisResult {
   decision: "good" | "okay" | "avoid"
   explanation: string
   caution: string[]
 }
+
+
 
 export default function Home() {
   const [inputText, setInputText] = useState("")
@@ -29,9 +33,11 @@ export default function Home() {
     if (inputText) formData.append("prompt", inputText);
     if (selectedImage) formData.append("image", selectedImage);
 
-    const response = await fetch("http://localhost:8000/search", {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+    console.log('Making request to:', `${apiUrl}/search`);
+    const response = await fetch(`${apiUrl}/search`, {
       method: "POST",
-      body: formData,   // ❌ NO HEADERS
+      body: formData,
     });
 
     if (!response.ok) {
