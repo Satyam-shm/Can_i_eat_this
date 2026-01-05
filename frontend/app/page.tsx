@@ -47,16 +47,37 @@ export default function Home() {
     }
 
     const data = await response.json();
+    const normalizeCaution = (caution: any): string[] => {
+    if (!caution) return [];
+    if (Array.isArray(caution)) {
+      return caution
+        .map(item => cleanText(item))
+        .filter(Boolean);
+    }
+    if (typeof caution === "string") {
+      try {
+        const parsed = JSON.parse(caution);
+        if (Array.isArray(parsed)) {
+          return parsed.map(item => cleanText(item)).filter(Boolean);
+        }
+      } catch (_) {}
+      return [cleanText(caution)];
+    }
+    return [];
+  };
 
-    setResult({
-      decision: data.decision,
-      explanation: data.explanation,
-      caution: Array.isArray(data.caution)
-        ? data.caution
-        : data.caution
-        ? [data.caution]
-        : [],
-    });
+  const cleanText = (text: string): string => {
+    return text
+      ?.replace(/[\[\]\\"]/g, "")
+      ?.replace(/\n/g, " ")       
+      ?.trim() || "";
+  };
+
+  setResult({
+    decision: data.decision,
+    explanation: data.explanation,
+    caution: normalizeCaution(data.caution),
+  });
   } catch (error) {
     console.error("CLIENT ERROR:", error);
     alert("Something went wrong. Check console.");
