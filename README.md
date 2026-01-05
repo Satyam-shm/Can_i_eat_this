@@ -1,3 +1,4 @@
+# Team - Quantum-Core
 # 🍽️ Can I Eat This? – AI Food Health Assistant
 
 An AI-powered assistant that tells whether you should eat a food **right now** based on:
