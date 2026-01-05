@@ -21,7 +21,6 @@ Returns:
 **Frontend**
 - Next.js
 - React
-- Tailwind + ShadCN
 
 **Backend**
 - Node.js + Express
