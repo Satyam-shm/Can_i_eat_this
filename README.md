@@ -39,3 +39,5 @@ Returns:
 - `Qwen/Qwen2.5-VL-7B-Instruct`
 
 ## 📦 Setup Guide
+https://github.com/user-attachments/assets/cd2c1c6d-f6a4-425c-9b7d-a5218f51bb63
+
